@@ -1,0 +1,178 @@
+{
+  "order": 1501,
+  "generated_at": "2026-10-19T03:19:30.287835+00:00",
+  "checks_total": 28,
+  "checks_passed": 28,
+  "checks_failed": 0,
+  "all_passed": true,
+  "checks": [
+    {
+      "name": "事件流加载",
+      "expected": "32",
+      "actual": "32",
+      "passed": true
+    },
+    {
+      "name": "样例无残留 PII",
+      "expected": "通过",
+      "actual": "通过",
+      "passed": true
+    },
+    {
+      "name": "假名化可复现（两次结果一致）",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "存在非白名单来源且被拒绝",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "拒绝原因可解释",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "被拒来源未混入采纳集",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "name": "incident_retro 产出结论",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "incident_retro 每条结论挂证据ID+时间戳",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "incident_retro 结论证据可回溯到采纳集",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "incident_retro 改进项可回溯到结论/证据",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "incident_retro 报告渲染确定性",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "incident_retro 报告无未填充占位符",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "release_retro 产出结论",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "release_retro 每条结论挂证据ID+时间戳",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "release_retro 结论证据可回溯到采纳集",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "release_retro 改进项可回溯到结论/证据",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "release_retro 报告渲染确定性",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "release_retro 报告无未填充占位符",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "共产出两份样例复盘",
+      "expected": "2",
+      "actual": "2",
+      "passed": true
+    },
+    {
+      "name": "无证据的结论无法构造",
+      "expected": "GroundingError",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "无结论的改进项无法构造",
+      "expected": "TraceabilityError",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "单元测试全部通过",
+      "expected": "returncode 0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "name": "匿名过程数据产物存在",
+      "expected": "True",
+      "actual": "True",
+      "passed": true
+    },
+    {
+      "name": "匿名过程数据条数等于输入",
+      "expected": "32",
+      "actual": "32",
+      "passed": true
+    },
+    {
+      "name": "匿名产物中无原始人员姓名",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "name": "人员字段全部为 PERSON- 假名",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "name": "单据字段全部为 REF- 假名",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    },
+    {
+      "name": "事件 ID 全部为 EVT- 假名",
+      "expected": "0",
+      "actual": "0",
+      "passed": true
+    }
+  ]
+}

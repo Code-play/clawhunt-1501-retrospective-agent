@@ -1,0 +1,87 @@
+{
+  "version": "1.0",
+  "description": "复盘规则配置：场景(窗口+服务+选用的规则) 与 规则(过滤+聚合+阈值+文案模板)。改配置即可换场景，无需改代码。",
+  "scenarios": [
+    {
+      "scenario_id": "incident_retro",
+      "title": "支付服务事故处理复盘",
+      "window": { "from": "2026-03-02T00:00:00Z", "to": "2026-03-09T00:00:00Z" },
+      "focus": { "service": ["payment"] },
+      "rules": ["R-PAY-INC-COUNT", "R-PAY-DETECT-LAG"]
+    },
+    {
+      "scenario_id": "release_retro",
+      "title": "结算服务发布复盘",
+      "window": { "from": "2026-03-09T00:00:00Z", "to": "2026-03-16T00:00:00Z" },
+      "focus": { "service": ["checkout"] },
+      "rules": ["R-CO-DEPLOY-FAIL", "R-CO-REVIEW-LAG"]
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "R-PAY-INC-COUNT",
+      "title": "事故数量与严重级别分布",
+      "filter": { "action": ["incident_opened"] },
+      "group_by": "attributes.severity",
+      "aggregate": { "op": "count" },
+      "min_value": 3,
+      "min_evidence": 3,
+      "confidence": 0.8,
+      "fact_template": "窗口内共开启 {value} 起事故，按严重级别分布：{groups}。",
+      "conclusion_template": "事故数量达到可复盘规模（{value} 起），且多起事故集中出现，需定位共同根因。",
+      "action": {
+        "statement": "针对集中出现的事故组织根因复盘，收敛共同失效路径并登记整改项。",
+        "owner_role": "sre",
+        "priority": "high"
+      }
+    },
+    {
+      "rule_id": "R-PAY-DETECT-LAG",
+      "title": "平均检测时长",
+      "filter": { "action": ["incident_opened"] },
+      "aggregate": { "op": "avg", "field": "attributes.time_to_detect_minutes" },
+      "min_value": 30,
+      "min_evidence": 3,
+      "confidence": 0.6,
+      "fact_template": "窗口内事故平均检测时长 {value} 分钟（阈值 30 分钟）。",
+      "conclusion_template": "平均检测时长 {value} 分钟高于阈值 30 分钟，监控告警的发现能力偏弱。",
+      "action": {
+        "statement": "补齐支付核心链路的告警覆盖与阈值，缩短事故发现时间。",
+        "owner_role": "oncall_engineer",
+        "priority": "medium"
+      }
+    },
+    {
+      "rule_id": "R-CO-DEPLOY-FAIL",
+      "title": "部署失败率",
+      "filter": { "action": ["deploy"] },
+      "aggregate": { "op": "ratio", "numerator": { "outcome": ["failure"] } },
+      "min_value": 0.3,
+      "min_evidence": 3,
+      "confidence": 0.75,
+      "fact_template": "窗口内共 {total} 次部署，其中失败 {ratio_numerator} 次，失败率 {value}（阈值 0.3）。",
+      "conclusion_template": "部署失败率 {value} 高于阈值 0.3，发布流水线的稳定性需要治理。",
+      "action": {
+        "statement": "为结算服务发布流水线增加发布前校验与灰度门禁，降低失败率。",
+        "owner_role": "release_manager",
+        "priority": "high"
+      }
+    },
+    {
+      "rule_id": "R-CO-REVIEW-LAG",
+      "title": "评审等待时长",
+      "filter": { "action": ["review_requested"] },
+      "aggregate": { "op": "avg", "field": "attributes.wait_hours" },
+      "min_value": 12,
+      "min_evidence": 2,
+      "confidence": 0.6,
+      "fact_template": "窗口内变更评审平均等待 {value} 小时（阈值 12 小时）。",
+      "conclusion_template": "变更评审平均等待 {value} 小时高于阈值 12 小时，评审环节成为发布瓶颈。",
+      "action": {
+        "statement": "为结算服务变更建立评审人轮值机制并设置等待时长提醒。",
+        "owner_role": "release_manager",
+        "priority": "medium"
+      }
+    }
+  ]
+}
