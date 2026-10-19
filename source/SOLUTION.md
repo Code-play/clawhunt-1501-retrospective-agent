@@ -1,8 +1,12 @@
 【交付物获取方式】
 本单 delivery_channel=platform_only，平台无附件上传通道，评审只读提交正文。
-因此本正文自包含：交付物的结构、配置、机制、脱敏过程数据节选、两份完整可溯源复盘样例、
+因此本正文自包含：交付物的结构、配置、机制、匿名过程数据节选、两份完整可溯源复盘样例、
 一键复跑命令、预期输出与验证记录，均写在正文里，无需下载即可核验。
-完整交付物为 30 个文件（清单见下，含 outputs/ 下 4 个 demo 产物），正文已给出复现所需的关键内容；demo 会另产出 outputs/ 下的匿名数据集与两份报告。
+
+完整交付物（30 个文件，公开可浏览）：
+  仓库：https://github.com/Code-play/clawhunt-1501-retrospective-agent
+  源码树：https://github.com/Code-play/clawhunt-1501-retrospective-agent/tree/main/source
+  打包：https://github.com/Code-play/clawhunt-1501-retrospective-agent/raw/main/1501-retrospective-agent.zip
 
 【订单与范围】
 订单 #1501「企业 Agent 系统 14/50｜业务复盘 Agent」。
